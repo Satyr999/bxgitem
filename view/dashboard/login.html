@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <!--<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="./assets/nprogress/nprogress.css">
+    <link rel="stylesheet" href="./less/index.css">-->
+    <?php include '/view/common/css.html' ?>
+</head>
+
+<body>
+    <!-- 登录 -->
+    <div class="login">
+        <div class="login-wrap">
+            <div class="avatar">
+                <img src="/view/public/uploads/monkey.png" class="img-circle" alt="">
+            </div>
+            <form id="formLogin" class="col-md-offset-1 col-md-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" class="form-control" name="tc_name" value="前端学院" placeholder="用户名">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input type="password" name="tc_pass" class="form-control" value="123456" placeholder="密码">
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
+            </form>
+        </div>
+    </div>
+
+    <?php include '/view/common/js.html' ?>
+
+</body>
+<script>
+    $("#formLogin").submit(function() {
+        var data = $(this).serializeArray();
+        console.log(data);
+
+        $.ajax({
+            url: "/api/login",
+            type: 'post',
+            data: data,
+            success: function(info) {
+                if (info.code == 200) {
+                    // alert("登陆成功");
+                    var tcstr = JSON.stringify(info.result);
+                    $.cookie("tcstr", tcstr);
+                    location.href = "index";
+                }
+            },
+            error: function(errorInfo) {
+                console.log('用户名或密码不正确');
+            }
+        });
+        return false;
+    })
+</script>
+
+</html>
