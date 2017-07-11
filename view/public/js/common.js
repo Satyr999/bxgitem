@@ -12,6 +12,6 @@ if (!$.cookie('PHPSESSID') && location.pathname != '/login') { //如果自己当
 
 if (location.pathname != '/login' && location.pathname != '/dashboard/login' && location.pathname != '/view/dashboard/login') {
     var tcinfo = JSON.parse($.cookie('tcstr'));
-    var tplstr = template(tpl, tcinfo);
+    var tplstr = template('tpl', tcinfo);
     $(".aside>.profile").html(tplstr);
 }
