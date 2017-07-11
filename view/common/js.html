@@ -1,7 +1,32 @@
-<script src="/view/public/assets/jquery/jquery.min.js"></script>
+<!--<script src="/view/public/assets/jquery/jquery.min.js"></script>
 <script src="/view/public/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="/view/public/assets/nprogress/nprogress.js"></script>
 <script src="/view/public/assets/jquery-cookie/jquery.cookie.js"></script>
 <script src="/view/public/assets/artTemplate/template.js"></script>
+    // <script src="/view/public/assets/echarts/echarts.min.js"></script>
 
-<script src="/view/public/js/common.js"></script>
+<script src="/view/public/js/common.js"></script>-->
+
+<script src="/view/public/assets/requirejs/require.js"></script>
+<script>
+    requirejs.config({
+        baseUrl: '/view/public',
+        paths: {
+            'jquery': 'assets/jquery/jquery.min',
+            'bootstrap': 'assets/bootstrap/js/bootstrap.min',
+            'nprogress': 'assets/nprogress/nprogress',
+            'cookie': 'assets/jquery-cookie/jquery.cookie',
+            'template': 'assets/artTemplate/template',
+            'common': 'js/common',
+            'login': 'js/login',
+            'index': 'js/index',
+            'echarts': 'assets/echarts/echarts.min'
+        },
+        shim: {
+            'bootstrap': {
+                deps: ['jquery']
+            }
+        }
+    })
+    require(['common']);
+</script>
